@@ -125,6 +125,7 @@ after_build:
 
 # to run your custom scripts instead of automatic MSBuild
 build_script:
+  - msbuild mxnet.sln /t:Rebuild /p:Configuration=Release;Platform=x64 /m
 
 # to disable automatic builds
 #build: off
