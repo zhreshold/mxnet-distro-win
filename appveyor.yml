@@ -38,7 +38,7 @@ init:
 clone_folder: c:\project\workspace
 
 # environment variables
-environment:
+# environment:
 
 
 
@@ -112,7 +112,7 @@ build_script:
 #---------------------------------#
 
 # to run tests again only selected assemblies and/or categories
-test:
+#test:
 
 
 # scripts to run before tests
