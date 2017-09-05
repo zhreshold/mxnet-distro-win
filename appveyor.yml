@@ -101,7 +101,7 @@ configuration: Release
 
 build:
   parallel: true                  # enable MSBuild parallel builds
-  project: mxnet.sln              # path to Visual Studio solution or project
+  project: build\mxnet.sln        # path to Visual Studio solution or project
 
   # MSBuild verbosity level
   verbosity: quiet|minimal|normal|detailed
