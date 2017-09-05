@@ -121,7 +121,7 @@ before_package:
 # scripts to run after build
 after_build:
   - cd %APPVEYOR_BUILD_FOLDER%
-  - pip install -y pypandoc
+  - pip install pypandoc
   - set mxnet_variant=CPU
   - python setup.py bdist_wheel
 
