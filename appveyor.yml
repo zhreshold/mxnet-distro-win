@@ -53,8 +53,8 @@ matrix:
 
 # build cache to preserve files/folders between builds
 cache:
-  - C:\ProgramData\chocolatey\bin -> appveyor.yml
-  - C:\ProgramData\chocolatey\lib -> appveyor.yml
+  - C:\ProgramData\Chocolatey\bin -> appveyor.yml
+  - C:\ProgramData\Chocolatey\lib -> appveyor.yml
 
 # scripts that run after cloning repository
 install:
@@ -62,6 +62,7 @@ install:
   - echo 'install tools'
   # cmake
   - choco install cmake --installargs 'ADD_CMAKE_TO_PATH=""User""' -y
+  - refreshenv
   - cmake --version
   - ps: >-
         if (!(Test-Path ${env:MXNET_OPENBLAS_FILE})) {
