@@ -72,11 +72,11 @@ install:
             echo "Downloading opencv from ${env:MXNET_OPENCV_PKG} ..."
             appveyor DownloadFile "${env:MXNET_OPENCV_PKG}" -FileName ${env:MXNET_OPENCV_FILE} -Timeout 1200000
         }
-    - cmd: >-
-        echo "Extracting openblas to %APPVEYOR_BUILD_FOLDER% ..."
-        7z x %MXNET_OPENBLAS_FILE% -y -o"%APPVEYOR_BUILD_FOLDER%" >NUL
-        echo "Extracting opencv to %APPVEYOR_BUILD_FOLDER% ..."
-        7z x %MXNET_OPENCV_FILE% -y -o"%APPVEYOR_BUILD_FOLDER%" >NUL
+  - cmd: >-
+      echo "Extracting openblas to %APPVEYOR_BUILD_FOLDER% ..."
+      7z x %MXNET_OPENBLAS_FILE% -y -o"%APPVEYOR_BUILD_FOLDER%" >NUL
+      echo "Extracting opencv to %APPVEYOR_BUILD_FOLDER% ..."
+      7z x %MXNET_OPENCV_FILE% -y -o"%APPVEYOR_BUILD_FOLDER%" >NUL
 
 #---------------------------------#
 #       build configuration       #
