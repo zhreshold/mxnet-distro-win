@@ -53,8 +53,8 @@ matrix:
 
 # build cache to preserve files/folders between builds
 cache:
-  - C:\ProgramData\Chocolatey\bin -> appveyor.yml
-  - C:\ProgramData\Chocolatey\lib -> appveyor.yml
+  - C:\ProgramData\chocolatey\bin -> appveyor.yml
+  - C:\ProgramData\chocolatey\lib -> appveyor.yml
   - openblas.7z -> appveyor.yml
   - opencv.7z -> appveyor.yml
 
