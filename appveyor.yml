@@ -55,6 +55,8 @@ matrix:
 cache:
   - C:\ProgramData\Chocolatey\bin -> appveyor.yml
   - C:\ProgramData\Chocolatey\lib -> appveyor.yml
+  - openblas.7z -> appveyor.yml
+  - opencv.7z -> appveyor.yml
 
 # scripts that run after cloning repository
 install:
@@ -64,6 +66,7 @@ install:
   - choco install cmake --installargs 'ADD_CMAKE_TO_PATH=""User""' -y
   - refreshenv
   - cmake --version
+  - ps: appveyor
   - ps: >-
         if (!(Test-Path ${env:MXNET_OPENBLAS_FILE})) {
             echo "Downloading openblas from ${env:MXNET_OPENBLAS_PKG} ..."
