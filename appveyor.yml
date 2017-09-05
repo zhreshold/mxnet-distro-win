@@ -66,15 +66,14 @@ install:
   - choco install cmake --installargs 'ADD_CMAKE_TO_PATH=""User""' -y
   - refreshenv
   - cmake --version
-  - ps: appveyor
   - ps: >-
         if (!(Test-Path ${env:MXNET_OPENBLAS_FILE})) {
             echo "Downloading openblas from ${env:MXNET_OPENBLAS_PKG} ..."
-            appveyor DownloadFile "${env:MXNET_OPENBLAS_PKG}" -FileName ${env:MXNET_OPENBLAS_FILE} -Timeout 1200000
+            cmd /c appveyor DownloadFile "${env:MXNET_OPENBLAS_PKG}" -FileName ${env:MXNET_OPENBLAS_FILE} -Timeout 1200000
         }
         if (!(Test-Path ${env:MXNET_OPENCV_FILE})) {
             echo "Downloading opencv from ${env:MXNET_OPENCV_PKG} ..."
-            appveyor DownloadFile "${env:MXNET_OPENCV_PKG}" -FileName ${env:MXNET_OPENCV_FILE} -Timeout 1200000
+            cmd /c appveyor DownloadFile "${env:MXNET_OPENCV_PKG}" -FileName ${env:MXNET_OPENCV_FILE} -Timeout 1200000
         }
   - cmd: >-
       echo "Extracting openblas to %APPVEYOR_BUILD_FOLDER% ..."
