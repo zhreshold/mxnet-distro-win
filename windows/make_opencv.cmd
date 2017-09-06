@@ -1,4 +1,4 @@
-@echo on
+@echo off
 set OPENCV_VERSION=3.3.0
 set OPENCV_URL="https://github.com/opencv/opencv/archive/%OPENCV_VERSION%.zip"
 
@@ -10,7 +10,6 @@ appveyor DownloadFile %OPENCV_URL% -FileName opencv.zip
 7z x opencv.zip -y -o opencv_src >NUL
 mkdir opencv_build
 cd opencv_build
-echo %BUILD_TARGET_PLATFORM%
 cmake ../opencv_src ^
       -D OPENCV_ENABLE_NONFREE=OFF ^
       -D WITH_1394=OFF ^
@@ -113,6 +112,6 @@ cmake ../opencv_src ^
       -D CMAKE_INCLUDE_PATH=$DEPS_PATH/include ^
       -D CMAKE_BUILD_TYPE=RELEASE ^
       -D CMAKE_INSTALL_PREFIX=$DEPS_PATH ^
-      -G %BUILD_TARGET_PLATFORM% || exit 1;
+      -G "%BUILD_TARGET_PLATFORM%" || exit 1;
 
 msbuild OpenCV.sln /t:Rebuild /p:Configuration=Release;Platform=x64 /m
