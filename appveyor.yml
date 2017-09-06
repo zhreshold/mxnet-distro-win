@@ -43,7 +43,7 @@ environment:
   MXNET_OPENCV_FILE: opencv.7z
   MXNET_OPENCV_DIR: opencv
   MXNET_OPENCV_PKG: https://github.com/hjk41/MiscFiles/blob/master/opencv.7z?raw=true
-
+  BUILD_TARGET_PLATFORM: "Visual Studio 14 2015 Win64"
 
 
 
@@ -75,7 +75,7 @@ install:
   - echo "Extracting opencv to %APPVEYOR_BUILD_FOLDER% ..."
   - 7z x %MXNET_OPENCV_FILE% -y -o"%APPVEYOR_BUILD_FOLDER%" >NUL
   # cmake
-  - ./install_chocolatey_deps.bat
+  - call ./windows/choco_install.cmd
 
 #---------------------------------#
 #       build configuration       #
@@ -98,17 +98,12 @@ configuration: Release
 #  - Release
 
 build:
-  parallel: true                  # enable MSBuild parallel builds
-  project: build\mxnet.sln        # path to Visual Studio solution or project
-
-  # MSBuild verbosity level
-  verbosity: quiet|minimal|normal|detailed
-
 
 # scripts to run before build
 before_build:
-  - git clone --recursive https://github.com/apache/incubator-mxnet
-  - cd .\incubator-mxnet
+  - call ./windows/make_opencv.cmd
+  - git clone --recursive https://github.com/apache/incubator-mxnet mxnet-build
+  - cd .\mxnet-build
   - mkdir build
   - cd .\build
   - set OpenBLAS_HOME=%APPVEYOR_BUILD_FOLDER%/%MXNET_OPENBLAS_DIR%
