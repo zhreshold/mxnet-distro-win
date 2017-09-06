@@ -1,4 +1,4 @@
-@echo off
+@echo on
 set OPENCV_VERSION=3.3.0
 set OPENCV_URL="https://github.com/opencv/opencv/archive/%OPENCV_VERSION%.zip"
 
@@ -8,7 +8,7 @@ cd deps
 echo Downloading opencv
 appveyor DownloadFile %OPENCV_URL% -FileName opencv.zip
 7z x opencv.zip -y -o opencv_src >NUL
-dir /b /a-d 
+dir /b /a-d
 mkdir opencv_build
 cd opencv_build
 cmake ../opencv_src ^
