@@ -39,8 +39,6 @@ init:
 environment:
   BUILD_TARGET_PLATFORM: Visual Studio 14 2015 Win64
 
-
-
 # this is how to allow failing jobs in the matrix
 matrix:
   fast_finish: true     # set this flag to immediately finish build once one of the jobs fails.
@@ -49,8 +47,8 @@ matrix:
 cache:
   - C:\ProgramData\chocolatey\bin -> appveyor.yml
   - C:\ProgramData\chocolatey\lib -> appveyor.yml
-  - openblas.7z -> appveyor.yml
-  - opencv.7z -> appveyor.yml
+  - C:\deps\opencv\build\install -> windows/make_opencv.cmd
+  - C:\deps\openblas -> windows/make_openblas.cmd
 
 # scripts that run after cloning repository
 install:
@@ -119,15 +117,16 @@ build_script:
 
 # scripts to run before tests
 before_test:
-  - cd %APPVEYOR_BUILD_FOLDER%
-  - set wheel_name=dir /b /a-d mxnet*
-  - pip install -U --force-reinstall dist/%wheel_name%
+  - cd %APPVEYOR_BUILD_FOLDER%/dist
+  - FOR /F "tokens=* USEBACKQ" %%F IN (`dir /b /a-d mxnet*`) DO (SET wheel_name=%%F)
+  - pip install -U --force-reinstall %wheel_name%
 
 # scripts to run after tests
 after_test:
 
 # to run your custom scripts instead of automatic tests
 test_script:
+  - cd %APPVEYOR_BUILD_FOLDER%
   - python sanity_test.py
 
 # to disable automatic tests

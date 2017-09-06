@@ -2,6 +2,7 @@
 set OPENCV_VERSION=3.3.0
 set OPENCV_URL="https://github.com/opencv/opencv/archive/%OPENCV_VERSION%.zip"
 
+IF EXIST C:\deps\opencv\build\install GOTO SKIPFILE
 cd C:\
 mkdir deps
 cd deps
@@ -119,3 +120,4 @@ dir
 dir ./install
 REM return to default
 cd %APPVEYOR_BUILD_FOLDER%
+:SKIPFILE
