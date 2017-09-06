@@ -117,6 +117,8 @@ build_script:
 
 # scripts to run before tests
 before_test:
+  - cd %APPVEYOR_BUILD_FOLDER%
+  - python platform_test.py
   - cd %APPVEYOR_BUILD_FOLDER%/dist
   - FOR /F "tokens=* USEBACKQ" %%F IN (`dir /b /a-d mxnet*`) DO (SET wheel_name=%%F)
   - pip install -U --force-reinstall %wheel_name%
