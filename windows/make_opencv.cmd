@@ -113,5 +113,6 @@ cmake ^
       -G "%BUILD_TARGET_PLATFORM%" %OPENCV_SRC_DIR% || exit 1;
 
 msbuild OpenCV.sln /t:Rebuild /p:Configuration=Release;Platform=x64 /m
+msbuild OpenCV.sln /target:INSTALL
 REM return to default
 cd %APPVEYOR_BUILD_FOLDER%
