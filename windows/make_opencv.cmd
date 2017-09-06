@@ -8,10 +8,9 @@ cd deps
 echo Downloading opencv
 appveyor DownloadFile %OPENCV_URL% -FileName opencv.zip
 7z x opencv.zip -y -oopencv >NUL
-cd opencv
-dir
 mkdir build
 cd build
+set OPENCV_SRC_DIR="../opencv/opencv-%OPENCV_VERSION%"
 cmake ^
       -D OPENCV_ENABLE_NONFREE=OFF ^
       -D WITH_1394=OFF ^
@@ -111,6 +110,6 @@ cmake ^
       -D BUILD_opencv_dnn=OFF ^
       -D BUILD_opencv_ml=OFF ^
       -D CMAKE_BUILD_TYPE=RELEASE ^
-      -G "%BUILD_TARGET_PLATFORM%" .. || exit 1;
+      -G "%BUILD_TARGET_PLATFORM%" %OPENCV_SRC_DIR% || exit 1;
 
 msbuild OpenCV.sln /t:Rebuild /p:Configuration=Release;Platform=x64 /m
