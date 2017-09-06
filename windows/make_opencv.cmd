@@ -9,7 +9,7 @@ echo Downloading opencv
 appveyor DownloadFile %OPENCV_URL% -FileName opencv.zip
 7z x opencv.zip -y -o"opencv" >NUL
 cd opencv
-dir /b /a-d
+dir
 mkdir build
 cd build
 cmake ^
