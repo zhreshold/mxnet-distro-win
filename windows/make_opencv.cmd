@@ -1,4 +1,4 @@
-@echo on
+@echo off
 set OPENCV_VERSION=3.3.0
 set OPENCV_URL="https://github.com/opencv/opencv/archive/%OPENCV_VERSION%.zip"
 
@@ -113,3 +113,5 @@ cmake ^
       -G "%BUILD_TARGET_PLATFORM%" %OPENCV_SRC_DIR% || exit 1;
 
 msbuild OpenCV.sln /t:Rebuild /p:Configuration=Release;Platform=x64 /m
+REM return to default
+cd %APPVEYOR_BUILD_FOLDER%

@@ -37,12 +37,6 @@ init:
 
 # environment variables
 environment:
-  MXNET_OPENBLAS_FILE: openblas.7z
-  MXNET_OPENBLAS_DIR: openblas
-  MXNET_OPENBLAS_PKG: https://github.com/hjk41/MiscFiles/blob/master/openblas.7z?raw=true
-  MXNET_OPENCV_FILE: opencv.7z
-  MXNET_OPENCV_DIR: opencv
-  MXNET_OPENCV_PKG: https://github.com/hjk41/MiscFiles/blob/master/opencv.7z?raw=true
   BUILD_TARGET_PLATFORM: Visual Studio 14 2015 Win64
 
 
@@ -61,6 +55,7 @@ cache:
 # scripts that run after cloning repository
 install:
   - call ./windows/make_opencv.cmd
+  - call ./windows/make_openblas.cmd
   # by default, all script lines are interpreted as batch
   - ps: >-
         if (!(Test-Path ${env:MXNET_OPENBLAS_FILE})) {
