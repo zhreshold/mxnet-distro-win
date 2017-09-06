@@ -5,4 +5,5 @@ mkdir deps
 cd deps
 powershell "& ""%APPVEYOR_BUILD_FOLDER%\windows\download_openblas.ps1"""
 dir
+dir openblas\
 cd %APPVEYOR_BUILD_FOLDER%
