@@ -121,15 +121,15 @@ before_test:
   - python platform_test.py
   - cd %APPVEYOR_BUILD_FOLDER%/dist
   - FOR /F "tokens=* USEBACKQ" %%F IN (`dir /b /a-d mxnet*`) DO (SET wheel_name=%%F)
-  - pip install -U --force-reinstall %wheel_name%
+  # - pip install -U --force-reinstall %wheel_name%
 
 # scripts to run after tests
 after_test:
 
 # to run your custom scripts instead of automatic tests
 test_script:
-  - cd %APPVEYOR_BUILD_FOLDER%
-  - python sanity_test.py
+  #- cd %APPVEYOR_BUILD_FOLDER%
+  #- python sanity_test.py
 
 # to disable automatic tests
 #test: off
