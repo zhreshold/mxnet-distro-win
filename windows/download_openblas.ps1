@@ -7,4 +7,4 @@ if (!(Test-Path ${env:MXNET_OPENBLAS_FILE})) {
     appveyor DownloadFile "${env:MXNET_OPENBLAS_PKG}" -FileName ${env:MXNET_OPENBLAS_FILE} -Timeout 1200000
 }
 
-7z x ${env:MXNET_OPENBLAS_FILE} -y -o"${env:APPVEYOR_BUILD_FOLDER}"
+7z x ${env:MXNET_OPENBLAS_FILE} -y -o${env:APPVEYOR_BUILD_FOLDER}
