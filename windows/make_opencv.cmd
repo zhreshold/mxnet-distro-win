@@ -7,10 +7,11 @@ mkdir deps
 cd deps
 echo Downloading opencv
 appveyor DownloadFile %OPENCV_URL% -FileName opencv.zip
-7z x opencv.zip -y -oopencv_src >NUL
-mkdir opencv_build
-cd opencv_build
-cmake ../opencv_src ^
+7z x opencv.zip -y -o"opencv" >NUL
+cd opencv
+mkdir build
+cd build
+cmake .. ^
       -D OPENCV_ENABLE_NONFREE=OFF ^
       -D WITH_1394=OFF ^
       -D WITH_ARAVIS=ON ^

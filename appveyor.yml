@@ -60,6 +60,7 @@ cache:
 
 # scripts that run after cloning repository
 install:
+  - call ./windows/make_opencv.cmd
   # by default, all script lines are interpreted as batch
   - ps: >-
         if (!(Test-Path ${env:MXNET_OPENBLAS_FILE})) {
@@ -101,7 +102,7 @@ build:
 
 # scripts to run before build
 before_build:
-  - call ./windows/make_opencv.cmd
+
   - git clone --recursive https://github.com/apache/incubator-mxnet mxnet-build
   - cd .\mxnet-build
   - mkdir build
