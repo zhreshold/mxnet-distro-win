@@ -11,7 +11,7 @@ appveyor DownloadFile %OPENCV_URL% -FileName opencv.zip
 mkdir opencv_build
 cd opencv_build
 cmake ../opencv_src ^
-      -G "BUILD_TARGET_PLATFORM" ^
+      -G %BUILD_TARGET_PLATFORM% ^
       -D OPENCV_ENABLE_NONFREE=OFF ^
       -D WITH_1394=OFF ^
       -D WITH_ARAVIS=ON ^
