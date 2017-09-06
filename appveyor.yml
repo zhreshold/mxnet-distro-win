@@ -60,7 +60,6 @@ cache:
 
 # scripts that run after cloning repository
 install:
-  - echo %BUILD_TARGET_PLATFORM%
   # by default, all script lines are interpreted as batch
   - ps: >-
         if (!(Test-Path ${env:MXNET_OPENBLAS_FILE})) {
