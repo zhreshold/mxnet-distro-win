@@ -54,8 +54,8 @@ cache:
 
 # scripts that run after cloning repository
 install:
-  - call ./windows/make_opencv.cmd
   - call ./windows/make_openblas.cmd
+  - call ./windows/make_opencv.cmd
   # by default, all script lines are interpreted as batch
   - ps: >-
         if (!(Test-Path ${env:MXNET_OPENBLAS_FILE})) {
