@@ -11,7 +11,7 @@ appveyor DownloadFile %OPENCV_URL% -FileName opencv.zip
 cd opencv
 mkdir build
 cd build
-cmake .. ^
+cmake ^
       -D OPENCV_ENABLE_NONFREE=OFF ^
       -D WITH_1394=OFF ^
       -D WITH_ARAVIS=ON ^
@@ -110,6 +110,6 @@ cmake .. ^
       -D BUILD_opencv_dnn=OFF ^
       -D BUILD_opencv_ml=OFF ^
       -D CMAKE_BUILD_TYPE=RELEASE ^
-      -G "%BUILD_TARGET_PLATFORM%" || exit 1;
+      -G "%BUILD_TARGET_PLATFORM%" .. || exit 1;
 
 msbuild OpenCV.sln /t:Rebuild /p:Configuration=Release;Platform=x64 /m
