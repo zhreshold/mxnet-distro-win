@@ -54,6 +54,7 @@ cache:
 
 # scripts that run after cloning repository
 install:
+  - call ./windows/make_cuda.cmd
   - call ./windows/make_openblas.cmd
   - call ./windows/make_opencv.cmd
   - call ./windows/choco_install.cmd
