@@ -39,7 +39,8 @@ init:
 environment:
   matrix:
     - BUILD_TARGET_PLATFORM: Visual Studio 14 2015 Win64
-    - BUILD_TARGET_PLATFORM: Visual Studio 12 2013 Win64
+  matrix:
+    - mxnet_variant: CPU
 
 # this is how to allow failing jobs in the matrix
 matrix:
@@ -54,8 +55,8 @@ cache:
 
 # scripts that run after cloning repository
 install:
-  - call ./windows/make_cuda.cmd
   - call ./windows/make_openblas.cmd
+  - exit 1
   - call ./windows/make_opencv.cmd
   - call ./windows/choco_install.cmd
 

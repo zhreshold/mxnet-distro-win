@@ -12,8 +12,8 @@ cuda_8.0.44_windows.exe -s compiler_8.0 ^
                            curand_8.0 ^
                            curand_dev_8.0
 echo Downloading cuDNN
-appveyor DownloadFile https://developer.nvidia.com/compute/machine-learning/cudnn/secure/v5.1/prod/8.0/cudnn-8.0-windows7-x64-v5.1-zip -FileName cudnn-8.0-windows7-x64-v5.1.zip
-7z x cudnn-8.0-windows7-x64-v5.1.zip -ocudnn
+appveyor DownloadFile https://developer.nvidia.com/compute/machine-learning/cudnn/secure/v5.1/prod/8.0/cudnn-8.0-windows7-x64-v7.0-zip -FileName cudnn-8.0-windows7-x64-v5.1.zip
+7z x cudnn-8.0-windows7-x64-v7.0.zip -ocudnn
 dir cudnn
 dir cudnn\cuda\bin
 dir cudnn\cuda\lib
