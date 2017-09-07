@@ -38,6 +38,7 @@ init:
 # environment variables
 environment:
   BUILD_TARGET_PLATFORM: Visual Studio 14 2015 Win64
+  mxnet_variant: CPU
 
 # this is how to allow failing jobs in the matrix
 matrix:
@@ -97,7 +98,6 @@ before_package:
 after_build:
   - cd %APPVEYOR_BUILD_FOLDER%
   - pip install pypandoc
-  - set mxnet_variant=CPU
   - python setup.py bdist_wheel
 
 # to run your custom scripts instead of automatic MSBuild

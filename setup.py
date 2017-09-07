@@ -86,6 +86,13 @@ else:
 short_description += ' This version uses {0}.'.format(' and '.join(libraries))
 
 package_data = {'mxnet': [os.path.join('mxnet', os.path.basename(LIB_PATH[0]))]}
+# this is a hack to mingw openblas because its performance is better than vs
+if platform.system() == 'Windows':
+    package_data['mxnet'].append('c:/deps/openblas/bin/libgcc_s_seh-1.dll')
+    package_data['mxnet'].append('c:/deps/openblas/bin/libgfortran-3.dll')
+    package_data['mxnet'].append('c:/deps/openblas/bin/libopenblas.dll')
+    package_data['mxnet'].append('c:/deps/openblas/bin/libquadmath-0.dll')
+    print(package_data['mxnet'])
 if variant.endswith('MKL'):
 # uncomment below lines when we start using mkldnn
     # shutil.copy('../deps/lib/libmkldnn.so', os.path.join(CURRENT_DIR, 'mxnet'))
