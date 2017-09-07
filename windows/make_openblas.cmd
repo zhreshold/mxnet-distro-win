@@ -11,7 +11,7 @@ REM powershell "& ""%APPVEYOR_BUILD_FOLDER%\windows\download_openblas.ps1"""
 appveyor DownloadFile %OPENBLAS_URL% -FileName openblas.zip
 7z x openblas.zip -y -oopenblas >NUL
 cd openblas
-make
+msys2
 dir
 cd %APPVEYOR_BUILD_FOLDER%
 :SKIPFILE
