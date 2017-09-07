@@ -37,7 +37,9 @@ init:
 
 # environment variables
 environment:
-  BUILD_TARGET_PLATFORM: Visual Studio 14 2015 Win64
+  matrix:
+    - BUILD_TARGET_PLATFORM: Visual Studio 14 2015 Win64
+    - BUILD_TARGET_PLATFORM: Visual Studio 12 2013 Win64
 
 # this is how to allow failing jobs in the matrix
 matrix:
@@ -54,7 +56,6 @@ cache:
 install:
   - call ./windows/make_openblas.cmd
   - call ./windows/make_opencv.cmd
-  # cmake
   - call ./windows/choco_install.cmd
 
 #---------------------------------#
