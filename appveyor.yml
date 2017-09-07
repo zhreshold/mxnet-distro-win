@@ -37,10 +37,7 @@ init:
 
 # environment variables
 environment:
-  matrix:
-    - BUILD_TARGET_PLATFORM: Visual Studio 14 2015 Win64
-  matrix:
-    - mxnet_variant: CPU
+  BUILD_TARGET_PLATFORM: Visual Studio 14 2015 Win64
 
 # this is how to allow failing jobs in the matrix
 matrix:
