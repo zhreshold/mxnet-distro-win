@@ -56,6 +56,7 @@ cache:
 # scripts that run after cloning repository
 install:
   - "%PYTHON%/python --version"
+  - "%PYTHON%/Scripts/pip --version"
   - call ./windows/make_openblas.cmd
   - call ./windows/make_opencv.cmd
   - call ./windows/choco_install.cmd
