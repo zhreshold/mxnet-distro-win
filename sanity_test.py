@@ -11,4 +11,4 @@ except:
     import traceback
     print('Test failed')
     traceback.print_exc()
-sys.exit(1)
+    sys.exit(1)

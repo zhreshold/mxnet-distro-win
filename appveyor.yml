@@ -55,8 +55,9 @@ cache:
 
 # scripts that run after cloning repository
 install:
-  - call %PYTHON%/python --version
-  - call %PYTHON%/Scripts/pip --version
+  - call %PYTHON%\python --version
+  - call %PYTHON%\Scripts\pip --version
+  - dir %PYTHON%\Scripts\
   - call ./windows/make_openblas.cmd
   - call ./windows/make_opencv.cmd
   - call ./windows/choco_install.cmd
@@ -130,6 +131,7 @@ test_script:
   - dir debug_wheel\mxnet
   - call %PYTHON%/Scripts/pip install -U --force-reinstall "dist\%wheel_name%" || exit 0
   - call %PYTHON%/python sanity_test.py
+  - call %PYTHON%\Scripts\nosetests mxnet-build\tests\python\unittest\test_gluon.py
 
 # to disable automatic tests
 #test: off
