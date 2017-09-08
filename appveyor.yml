@@ -57,6 +57,7 @@ cache:
 install:
   - call %PYTHON%\python --version
   - call %PYTHON%\Scripts\pip --version
+  - call %PYTHON%/Scripts/pip install nose
   - dir %PYTHON%\Scripts\
   - call ./windows/make_openblas.cmd
   - call ./windows/make_opencv.cmd
