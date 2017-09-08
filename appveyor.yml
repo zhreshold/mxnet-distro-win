@@ -33,13 +33,14 @@ image: Visual Studio 2015
 # scripts that are called at very beginning, before repo cloning
 init:
   - git config --global core.autocrlf input
-  - python --version
 
 # environment variables
 environment:
   BUILD_TARGET_PLATFORM: Visual Studio 14 2015 Win64
   mxnet_variant: CPU
   PYTHON: C:\Python36-x64
+  PYTHON_VERSION: "3.6.1"
+  PYTHON_ARCH: "64"
 
 # this is how to allow failing jobs in the matrix
 matrix:
@@ -54,6 +55,7 @@ cache:
 
 # scripts that run after cloning repository
 install:
+  - python --version
   - call ./windows/make_openblas.cmd
   - call ./windows/make_opencv.cmd
   - call ./windows/choco_install.cmd
