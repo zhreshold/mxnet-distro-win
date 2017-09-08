@@ -90,7 +90,7 @@ package_data = {'mxnet': [os.path.join('mxnet', os.path.basename(LIB_PATH[0]))]}
 if platform.system() == 'Windows':
     for dll in ['libgcc_s_seh-1.dll', 'libgfortran-3.dll', 'libopenblas.dll', 'libquadmath-0.dll']:
         dll_dir = os.path.join(os.environ.get('OpenBLAS_HOME', 'c:/deps/openblas/'), 'bin')
-        shutil.copy(os.path.join(dll_dir, dll)), os.path.join(CURRENT_DIR, 'mxnet'))
+        shutil.copy(os.path.join(dll_dir, dll), os.path.join(CURRENT_DIR, 'mxnet'))
         package_data['mxnet'].append('mxnet/' + dll)
 if variant.endswith('MKL'):
 # uncomment below lines when we start using mkldnn
