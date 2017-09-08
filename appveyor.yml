@@ -39,6 +39,7 @@ init:
 environment:
   BUILD_TARGET_PLATFORM: Visual Studio 14 2015 Win64
   mxnet_variant: CPU
+  PYTHON: "C:\\Python35-x64"
 
 # this is how to allow failing jobs in the matrix
 matrix:
@@ -111,10 +112,9 @@ build_script:
 # scripts to run before tests
 before_test:
   - cd %APPVEYOR_BUILD_FOLDER%
-  - python platform_test.py
+  - python -c "import pip; print(pip.pep425tags.get_supported())"
   - cd %APPVEYOR_BUILD_FOLDER%/dist
   - FOR /F "tokens=* USEBACKQ" %%F IN (`dir /b /a-d mxnet*`) DO (SET wheel_name=%%F)
-  # - pip install -U --force-reinstall %wheel_name%
 
 # scripts to run after tests
 after_test:
@@ -126,7 +126,8 @@ test_script:
   - 7z x "%wheel_name%" -odebug_wheel
   - dir
   - dir debug_wheel\mxnet
-  #- python sanity_test.py
+  - pip install -U --force-reinstall %wheel_name% || exit 0
+  - python sanity_test.py
 
 # to disable automatic tests
 #test: off
