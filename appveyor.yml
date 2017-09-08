@@ -124,10 +124,10 @@ after_test:
 # to run your custom scripts instead of automatic tests
 test_script:
   - cd %APPVEYOR_BUILD_FOLDER%
-  - 7z x "%wheel_name%" -odebug_wheel
+  - 7z x "dist\%wheel_name%" -odebug_wheel
   - dir
   - dir debug_wheel\mxnet
-  - call %PYTHON%/Scripts/pip install -U --force-reinstall %wheel_name% || exit 0
+  - call %PYTHON%/Scripts/pip install -U --force-reinstall dist\%wheel_name% || exit 0
   - call %PYTHON%/python sanity_test.py
 
 # to disable automatic tests
