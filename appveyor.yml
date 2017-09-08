@@ -30,10 +30,6 @@ max_jobs: 1
 # Build worker image (VM template)
 image: Visual Studio 2015
 
-# scripts that are called at very beginning, before repo cloning
-init:
-  - git config --global core.autocrlf input
-
 # environment variables
 environment:
   BUILD_TARGET_PLATFORM: Visual Studio 14 2015 Win64
@@ -41,6 +37,10 @@ environment:
   PYTHON: C:\Python36-x64
   PYTHON_VERSION: "3.6.1"
   PYTHON_ARCH: "64"
+
+# scripts that are called at very beginning, before repo cloning
+init:
+  - git config --global core.autocrlf input
 
 # this is how to allow failing jobs in the matrix
 matrix:
@@ -92,9 +92,9 @@ before_package:
 # scripts to run after build
 after_build:
   - cd %APPVEYOR_BUILD_FOLDER%
-  - pip install pypandoc
-  - python -c "import pypandoc"
-  - python setup.py bdist_wheel
+  - "%PYTHON%/pip install pypandoc"
+  - "%PYTHON%/python -c 'import pypandoc'"
+  - "%PYTHON%/python setup.py bdist_wheel"
 
 # to run your custom scripts instead of automatic MSBuild
 build_script:
@@ -114,7 +114,7 @@ build_script:
 # scripts to run before tests
 before_test:
   - cd %APPVEYOR_BUILD_FOLDER%
-  - python -c "import pip; print(pip.pep425tags.get_supported())"
+  - "%PYTHON%/python -c 'import pip; print(pip.pep425tags.get_supported())'"
   - FOR /F "tokens=* USEBACKQ" %%F IN (`dir /b /a-d dir\mxnet*`) DO (SET wheel_name=%%F)
 
 # scripts to run after tests
@@ -126,8 +126,8 @@ test_script:
   - 7z x "%wheel_name%" -odebug_wheel
   - dir
   - dir debug_wheel\mxnet
-  - pip install -U --force-reinstall %wheel_name% || exit 0
-  - python sanity_test.py
+  - "%PYTHON%/pip install -U --force-reinstall %wheel_name% || exit 0"
+  - "%PYTHON%/python sanity_test.py"
 
 # to disable automatic tests
 #test: off
