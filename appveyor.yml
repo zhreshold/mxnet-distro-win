@@ -56,7 +56,7 @@ cache:
 # scripts that run after cloning repository
 install:
   - call %PYTHON%/python --version
-  - "%PYTHON%/Scripts/pip --version"
+  - call %PYTHON%/Scripts/pip --version
   - call ./windows/make_openblas.cmd
   - call ./windows/make_opencv.cmd
   - call ./windows/choco_install.cmd
@@ -93,9 +93,9 @@ before_package:
 # scripts to run after build
 after_build:
   - cd %APPVEYOR_BUILD_FOLDER%
-  - "%PYTHON%/Scripts/pip install pypandoc"
-  - "%PYTHON%/python -c 'import pypandoc'"
-  - "%PYTHON%/python setup.py bdist_wheel"
+  - call %PYTHON%/Scripts/pip install pypandoc
+  - call %PYTHON%/python -c "import pypandoc"
+  - call %PYTHON%/python setup.py bdist_wheel
 
 # to run your custom scripts instead of automatic MSBuild
 build_script:
@@ -115,7 +115,7 @@ build_script:
 # scripts to run before tests
 before_test:
   - cd %APPVEYOR_BUILD_FOLDER%
-  - "%PYTHON%/python -c 'import pip; print(pip.pep425tags.get_supported())'"
+  - call %PYTHON%/python -c "import pip; print(pip.pep425tags.get_supported())"
   - FOR /F "tokens=* USEBACKQ" %%F IN (`dir /b /a-d dir\mxnet*`) DO (SET wheel_name=%%F)
 
 # scripts to run after tests
@@ -127,8 +127,8 @@ test_script:
   - 7z x "%wheel_name%" -odebug_wheel
   - dir
   - dir debug_wheel\mxnet
-  - "%PYTHON%/Scripts/pip install -U --force-reinstall %wheel_name% || exit 0"
-  - "%PYTHON%/python sanity_test.py"
+  - call %PYTHON%/Scripts/pip install -U --force-reinstall %wheel_name% || exit 0
+  - call %PYTHON%/python sanity_test.py
 
 # to disable automatic tests
 #test: off
