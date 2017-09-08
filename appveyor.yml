@@ -33,13 +33,13 @@ image: Visual Studio 2015
 # scripts that are called at very beginning, before repo cloning
 init:
   - git config --global core.autocrlf input
-
+  - python --version
 
 # environment variables
 environment:
   BUILD_TARGET_PLATFORM: Visual Studio 14 2015 Win64
   mxnet_variant: CPU
-  PYTHON: "C:\\Python35-x64"
+  PYTHON: C:\Python36-x64
 
 # this is how to allow failing jobs in the matrix
 matrix:
@@ -113,8 +113,7 @@ build_script:
 before_test:
   - cd %APPVEYOR_BUILD_FOLDER%
   - python -c "import pip; print(pip.pep425tags.get_supported())"
-  - cd %APPVEYOR_BUILD_FOLDER%/dist
-  - FOR /F "tokens=* USEBACKQ" %%F IN (`dir /b /a-d mxnet*`) DO (SET wheel_name=%%F)
+  - FOR /F "tokens=* USEBACKQ" %%F IN (`dir /b /a-d dir\mxnet*`) DO (SET wheel_name=%%F)
 
 # scripts to run after tests
 after_test:
@@ -122,7 +121,6 @@ after_test:
 # to run your custom scripts instead of automatic tests
 test_script:
   - cd %APPVEYOR_BUILD_FOLDER%
-  - cd dist
   - 7z x "%wheel_name%" -odebug_wheel
   - dir
   - dir debug_wheel\mxnet
