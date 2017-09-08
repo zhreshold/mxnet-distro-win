@@ -122,7 +122,7 @@ after_test:
 test_script:
   - cd %APPVEYOR_BUILD_FOLDER%
   - cd dist
-  - 7z x "%wheel_name%" -o debug_wheel
+  - 7z x "%wheel_name%" -odebug_wheel
   - dir
   - dir debug_wheel\mxnet
   #- python sanity_test.py
