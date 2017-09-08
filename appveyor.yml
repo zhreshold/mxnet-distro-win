@@ -116,7 +116,7 @@ build_script:
 before_test:
   - cd %APPVEYOR_BUILD_FOLDER%
   - call %PYTHON%/python -c "import pip; print(pip.pep425tags.get_supported())"
-  - FOR /F "tokens=* USEBACKQ" %%F IN (`dir /b /a-d dir\mxnet*`) DO (SET wheel_name=%%F)
+  - FOR /F "tokens=* USEBACKQ" %%F IN (`dir /b /a-d dist\mxnet*`) DO (SET wheel_name=%%F)
 
 # scripts to run after tests
 after_test:
