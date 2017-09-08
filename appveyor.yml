@@ -90,6 +90,7 @@ before_package:
 after_build:
   - cd %APPVEYOR_BUILD_FOLDER%
   - pip install pypandoc
+  - python -c "import pypandoc"
   - python setup.py bdist_wheel
 
 # to run your custom scripts instead of automatic MSBuild
