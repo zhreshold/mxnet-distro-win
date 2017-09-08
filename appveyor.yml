@@ -92,7 +92,7 @@ before_package:
 # scripts to run after build
 after_build:
   - cd %APPVEYOR_BUILD_FOLDER%
-  - "%PYTHON%/pip install pypandoc"
+  - "%PYTHON%/Scripts/pip install pypandoc"
   - "%PYTHON%/python -c 'import pypandoc'"
   - "%PYTHON%/python setup.py bdist_wheel"
 
@@ -126,7 +126,7 @@ test_script:
   - 7z x "%wheel_name%" -odebug_wheel
   - dir
   - dir debug_wheel\mxnet
-  - "%PYTHON%/pip install -U --force-reinstall %wheel_name% || exit 0"
+  - "%PYTHON%/Scripts/pip install -U --force-reinstall %wheel_name% || exit 0"
   - "%PYTHON%/python sanity_test.py"
 
 # to disable automatic tests
