@@ -5,10 +5,10 @@ choco install -y pandoc
 pandoc --version
 
 REM pip install
-call %PIP_EXE% install pypandoc nose
+call %PIP_EXE% install pypandoc nose wheel
 call %PYTHON_EXE% -c "import pypandoc"
 SET NOSE_EXE=C:\%PYTHON%\Scripts\nosetests
-call %NOSE_EXE%
+call %NOSE_EXE% --version
 
 REM "CUDA installation"
 echo.%mxnet_variant% | findstr /C:"CU80">nul && (
