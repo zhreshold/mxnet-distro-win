@@ -2,7 +2,7 @@
 SET OPENCV_VERSION=3.3.0
 SET OPENCV_URL="https://github.com/opencv/opencv/archive/%OPENCV_VERSION%.zip"
 SET OPENCV_FILE="%DEPENDENCIES_DIR%\opencv\opencv.zip"
-SET OPENCV_DIR="%DEPENDENCIES_DIR%\opencv\src"
+SET OPENCV_SRC_DIR="%DEPENDENCIES_DIR%\opencv\src"
 SET OpenCV_DIR="%DEPENDENCIES_DIR%\opencv-install"
 
 IF EXIST %OpenCV_DIR% (
@@ -13,7 +13,7 @@ IF NOT EXIST %OpenCV_DIR% (
   echo "Downloading opencv from %OPENCV_URL%"
   mkdir "%DEPENDENCIES_DIR%\opencv"
   appveyor DownloadFile %OPENCV_URL% -FileName %OPENCV_FILE%
-  7z x %OPENCV_FILE% -y -o%OPENCV_DIR% && pushd %OPENCV_DIR%
+  7z x %OPENCV_FILE% -y -o%OPENCV_SRC_DIR% && pushd %OPENCV_SRC_DIR%
   mkdir build
   cd build
   cmake ^
@@ -116,7 +116,7 @@ IF NOT EXIST %OpenCV_DIR% (
     -D BUILD_opencv_ml=OFF ^
     -D CMAKE_BUILD_TYPE=RELEASE ^
     -D CMAKE_INSTALL_PREFIX=%OpenCV_DIR% ^
-    -G %CMAKE_BUILD_PLATFORM% %OPENCV_DIR% || exit 1;
+    -G %CMAKE_BUILD_PLATFORM% %OPENCV_SRC_DIR% || exit 1;
   echo "make ALL_BUILD"
   cmake --build . --config Release --target ALL_BUILD
   echo "make INSTALL"
