@@ -11,6 +11,7 @@ IF EXIST %OpenCV_DIR% (
 IF NOT EXIST %OpenCV_DIR% (
   echo "Install opencv"
   echo "Downloading opencv from %OPENCV_URL%"
+  mkdir "%DEPENDENCIES_DIR%\opencv"
   appveyor DownloadFile %OPENCV_URL% -FileName %OPENCV_FILE%
   7z x %OPENCV_FILE% -y -o%OPENCV_DIR% && pushd %OPENCV_DIR%
   mkdir build

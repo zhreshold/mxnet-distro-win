@@ -18,6 +18,7 @@ IF EXIST %OpenBLAS_HOME% {
 IF NOT EXIST %OpenBLAS_HOME% (
   echo "Downloading openblas from %OPENBLAS_URL%"
   IF NOT EXIST "%OPENBLAS_FILE%" (
+    mkdir "%DEPENDENCIES_DIR%\openblas"
     appveyor DownloadFile %OPENBLAS_URL% -FileName %OPENBLAS_FILE% -Timeout 1200000
   )
   7z x %OPENBLAS_FILE% -y -o%OpenBLAS_HOME%
