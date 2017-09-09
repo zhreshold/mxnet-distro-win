@@ -21,15 +21,17 @@ image: Visual Studio 2013
 
 # environment variables
 environment:
-  mxnet_variant: CPU
+  matrix:
+    - mxnet_variant: CPU
+      TARGET_ARCH: 32
+    - mxnet_variant: CPU
+      TARGET_ARCH: 64
+
     # - mxnet_variant: MKL
     # - mxnet_variant: CU75
     # - mxnet_variant: CU80
     # - mxnet_variant: CU75MKL
     # - mxnet_variant: CU80MKL
-  TARGET_ARCH:
-    - "32"
-    - "64"
   PYTHON: Python34
   DEPENDENCIES_DIR: C:\deps
 
