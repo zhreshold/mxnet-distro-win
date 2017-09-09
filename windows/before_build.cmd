@@ -11,8 +11,6 @@ pushd .\mxnet-build
 FOR /F "delims=" %%i IN ('git rev-parse HEAD') DO echo %%i > python/mxnet/COMMIT_HASH
 mkdir build && pushd build
 cmake .. ^
-    -DOPENCV_DIR=%OpenCV_DIR% ^
-    -DOpenBLAS_HOME=%OpenBLAS_HOME% ^
     -DUSE_PROFILER=1 ^
     -DUSE_CUDA=%USE_CUDA% ^
     -DUSE_CUDNN=%USE_CUDNN% ^
