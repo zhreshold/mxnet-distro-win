@@ -6,9 +6,9 @@ pandoc --version
 
 REM pip install
 call %PIP_EXE% install pypandoc nose wheel
-call %PYTHON_EXE% -c "import pypandoc"
+REM call %PYTHON_EXE% -c "import pypandoc"
 SET NOSE_EXE=C:\%PYTHON%\Scripts\nosetests
-call %NOSE_EXE% --version
+REM call %NOSE_EXE% --version
 
 REM "CUDA installation"
 echo.%mxnet_variant% | findstr /C:"CU80">nul && (
@@ -17,7 +17,7 @@ echo.%mxnet_variant% | findstr /C:"CU80">nul && (
   SET USE_CUDA=1
   SET USE_CUDNN=1
 ) || (
-  REM "?"
+  echo "Not a CUDA 8.0 build."
 )
 
 echo.%mxnet_variant% | findstr /C:"CU75">nul && (
@@ -26,7 +26,7 @@ echo.%mxnet_variant% | findstr /C:"CU75">nul && (
   SET USE_CUDA=1
   SET USE_CUDNN=1
 ) || (
-  REM "?"
+  echo "Not a CUDA 7.5 build."
 )
 
 REM "MKL"
@@ -34,7 +34,7 @@ echo.%mxnet_variant% | findstr /C:"MKL">nul && (
   echo "Installing MKL_DNN"
   echo "Dummy install"
 ) || (
-  REM "?"
+  echo "Not a MKL build."
 )
 
 echo "end of install"
