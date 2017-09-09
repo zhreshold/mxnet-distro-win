@@ -23,4 +23,4 @@ cmake .. ^
     -DUSE_LAPACK=1 ^
     -DUSE_DIST_KVSTORE=0 ^
     -DCMAKE_BUILD_TYPE=Release ^
-    -G "%CMAKE_BUILD_PLATFORM%"
+    -G %CMAKE_BUILD_PLATFORM%

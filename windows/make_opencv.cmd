@@ -116,7 +116,7 @@ IF NOT EXIST %OpenCV_DIR% (
     -D BUILD_opencv_ml=OFF ^
     -D CMAKE_BUILD_TYPE=RELEASE ^
     -D CMAKE_INSTALL_PREFIX=%OpenCV_DIR% ^
-    -G "%CMAKE_BUILD_PLATFORM%" %OPENCV_DIR% || exit 1;
+    -G %CMAKE_BUILD_PLATFORM% %OPENCV_DIR% || exit 1;
   echo "make ALL_BUILD"
   cmake --build . --config Release --target ALL_BUILD
   echo "make INSTALL"
