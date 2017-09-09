@@ -21,19 +21,20 @@ image: Visual Studio 2013
 
 # environment variables
 environment:
-  matrix:
-    - mxnet_variant: CPU
+  mxnet_variant: CPU
     # - mxnet_variant: MKL
     # - mxnet_variant: CU75
     # - mxnet_variant: CU80
     # - mxnet_variant: CU75MKL
     # - mxnet_variant: CU80MKL
-  matrix:
-    - TARGET_ARCH: 32
-    - TARGET_ARCH: 64
-  matrix:
-    - PYTHON: Python34
+  TARGET_ARCH:
+    - 32
+    - 64
+  PYTHON: Python34
   DEPENDENCIES_DIR: C:\deps
+
+matrix:
+  fast_finish: true
 
 # scripts that are called at very beginning, before repo cloning
 init:
