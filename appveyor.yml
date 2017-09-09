@@ -59,7 +59,7 @@ build:
 
 # scripts to run before build
 before_build:
-  - call ./windows/before_build.cmd
+  - call .\windows\before_build.cmd
 
 # scripts to run after build
 after_build:
