@@ -12,7 +12,13 @@ if platform.system() == 'Linux':
     sys.argv.append('--plat-name=manylinux1_x86_64')
 elif platform.system() == 'Windows':
     sys.argv.append('--universal')
-    sys.argv.append('--plat-name=win_amd64')
+    target_arch = os.environ['TARGET_ARCH']
+    if target_arch == 32:
+        sys.argv.append('--plat-name=win32')
+    elif target_arch == 64:
+        sys.argv.append('--plat-name=win_amd64')
+    else:
+        raise ValueError("Invalid target_arch: " + str(target_arch))
 
 from setuptools import setup, find_packages
 from setuptools.dist import Distribution
@@ -88,8 +94,10 @@ short_description += ' This version uses {0}.'.format(' and '.join(libraries))
 package_data = {'mxnet': [os.path.join('mxnet', os.path.basename(LIB_PATH[0]))]}
 # this is a hack to mingw openblas because its performance is better than vs
 if platform.system() == 'Windows':
-    for dll in ['libgcc_s_seh-1.dll', 'libgfortran-3.dll', 'libopenblas.dll', 'libquadmath-0.dll']:
-        dll_dir = os.path.join(os.environ.get('OpenBLAS_HOME', 'c:/deps/openblas/'), 'bin')
+    import glob
+    dll_dir = os.path.join(os.environ['OpenBLAS_HOME'], 'bin')
+    openblas_dlls = glob.glob(os.path.abspath(os.path.join(dll_dir, '*.dll')))
+    for dll in openblas_dlls:
         shutil.copy(os.path.join(dll_dir, dll), os.path.join(CURRENT_DIR, 'mxnet'))
         package_data['mxnet'].append('mxnet/' + dll)
 if variant.endswith('MKL'):
@@ -109,7 +117,7 @@ if variant.endswith('MKL'):
         package_data['mxnet'].append('mxnet/libmklml_intel.so')
         package_data['mxnet'].append('mxnet/libiomp5.so')
     elif platform.system() == 'Windows':
-        pass
+        raise NotImplementedError("Not ready for mkl windows")
     else:
         raise RuntimeError('Unsupported system: {}'.format(platform.system()))
     shutil.copy(os.path.join(os.path.dirname(LIB_PATH[0]), '../MKLML_LICENSE'), os.path.join(CURRENT_DIR, 'mxnet'))
