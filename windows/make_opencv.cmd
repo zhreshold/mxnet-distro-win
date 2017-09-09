@@ -14,6 +14,7 @@ IF NOT EXIST %OpenCV_DIR% (
   mkdir "%DEPENDENCIES_DIR%\opencv"
   appveyor DownloadFile %OPENCV_URL% -FileName %OPENCV_FILE%
   7z x %OPENCV_FILE% -y -o%OPENCV_SRC_DIR% && pushd %OPENCV_SRC_DIR%
+  dir
   mkdir build
   cd build
   cmake ^
