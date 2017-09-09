@@ -1,8 +1,8 @@
 REM "Install necessary packages/softwares"
 
 REM chocolatey packages
-choco install -y pandoc
-pandoc --version
+REM choco install -y pandoc
+REM pandoc --version
 
 REM pip install
 call %PIP_EXE% install pypandoc nose wheel
