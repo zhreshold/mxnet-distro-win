@@ -51,6 +51,7 @@ cache:
 
 # scripts that run after cloning repository
 install:
+  - echo "install script"
   - call .\windows\init.cmd
   - call .\windows\install.cmd
 
@@ -59,6 +60,7 @@ build:
 
 # scripts to run before build
 before_build:
+  - echo "before build script"
   - call .\windows\before_build.cmd
 
 # scripts to run after build

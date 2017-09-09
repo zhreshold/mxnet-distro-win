@@ -9,7 +9,6 @@ call %PIP_EXE% install pypandoc nose wheel
 call %PYTHON_EXE% -c "import pypandoc"
 SET NOSE_EXE=C:\%PYTHON%\Scripts\nosetests
 call %NOSE_EXE% --version
-echo "end of pip"
 
 REM "CUDA installation"
 echo.%mxnet_variant% | findstr /C:"CU80">nul && (
@@ -20,7 +19,6 @@ echo.%mxnet_variant% | findstr /C:"CU80">nul && (
 ) || (
   REM "?"
 )
-echo "end of cu80"
 
 echo.%mxnet_variant% | findstr /C:"CU75">nul && (
   echo "Installing CUDA 7.5"
@@ -30,7 +28,6 @@ echo.%mxnet_variant% | findstr /C:"CU75">nul && (
 ) || (
   REM "?"
 )
-echo "end of cu75"
 
 REM "MKL"
 echo.%mxnet_variant% | findstr /C:"MKL">nul && (
