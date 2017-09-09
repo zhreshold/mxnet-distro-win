@@ -42,7 +42,6 @@ matrix:
 init:
   - git config --global core.autocrlf input
   - mkdir %DEPENDENCIES_DIR%
-  - call .\windows\init.cmd
 
 cache:
   - C:\ProgramData\chocolatey\bin -> appveyor.yml
@@ -52,6 +51,7 @@ cache:
 
 # scripts that run after cloning repository
 install:
+  - call .\windows\init.cmd
   - call .\windows\install.cmd
 
 # real work
