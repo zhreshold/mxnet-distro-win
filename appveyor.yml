@@ -28,8 +28,8 @@ environment:
     # - mxnet_variant: CU75MKL
     # - mxnet_variant: CU80MKL
   TARGET_ARCH:
-    - 32
-    - 64
+    - "32"
+    - "64"
   PYTHON: Python34
   DEPENDENCIES_DIR: C:\deps
 
