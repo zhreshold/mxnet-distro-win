@@ -2,7 +2,8 @@
 SET OPENCV_VERSION=3.3.0
 SET OPENCV_URL="https://github.com/opencv/opencv/archive/%OPENCV_VERSION%.zip"
 SET OPENCV_FILE="%DEPENDENCIES_DIR%\opencv\opencv.zip"
-SET OPENCV_SRC_DIR="%DEPENDENCIES_DIR%\opencv\src"
+SET OPENCV_EXTRACT_DIR="%DEPENDENCIES_DIR%\opencv"
+SET OPENCV_SRC_DIR="%DEPENDENCIES_DIR%\opencv\opencv-%OPENCV_VERSION%"
 SET OpenCV_DIR="%DEPENDENCIES_DIR%\opencv-install"
 
 IF EXIST %OpenCV_DIR% (
@@ -13,7 +14,7 @@ IF NOT EXIST %OpenCV_DIR% (
   echo "Downloading opencv from %OPENCV_URL%"
   mkdir "%DEPENDENCIES_DIR%\opencv"
   appveyor DownloadFile %OPENCV_URL% -FileName %OPENCV_FILE%
-  7z x %OPENCV_FILE% -y -o%OPENCV_SRC_DIR% && pushd %OPENCV_SRC_DIR%
+  7z x %OPENCV_FILE% -y -o%OPENCV_EXTRACT_DIR% && pushd %OPENCV_SRC_DIR%
   dir
   mkdir build
   cd build
