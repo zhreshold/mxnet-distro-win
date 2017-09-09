@@ -10,6 +10,8 @@ git clone --recursive https://github.com/apache/incubator-mxnet mxnet-build
 pushd .\mxnet-build
 FOR /F "delims=" %%i IN ('git rev-parse HEAD') DO echo %%i > python/mxnet/COMMIT_HASH
 mkdir build && pushd build
+echo %OpenBLAS_HOME%
+echo %OpenCV_DIR%
 cmake .. ^
     -DUSE_PROFILER=1 ^
     -DUSE_CUDA=%USE_CUDA% ^
