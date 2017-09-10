@@ -17,7 +17,7 @@ branches:
     - master
 
 # Build worker image (VM template)
-image: Visual Studio 2015
+image: Visual Studio 2013
 
 # environment variables
 environment:
@@ -71,7 +71,7 @@ after_build:
 # to run your custom scripts instead of automatic MSBuild
 build_script:
   # in mxnet-build\build
-  - cmake --build . --config Release --target ALL_BUILD
+  - msbuild mxnet.sln /t:Rebuild /p:Configuration=Release /m
 
 # scripts to run before tests
 before_test:
