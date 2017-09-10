@@ -14,7 +14,7 @@ IF %TARGET_ARCH% == 64 (
   call "C:\Program Files\Microsoft SDKs\Windows\v7.0\Bin\SetEnv.cmd" /x64
   call "C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\vcvarsall.bat" x86_amd64
   set CMAKE_BUILD_PLATFORM="Visual Studio 12 2013 Win64"
-  set PYTHON_DIR=C:\%PYTHON%-64
+  set PYTHON_DIR=C:\%PYTHON%-x64
   set PYTHON_EXE=C:\%PYTHON%-x64\python
   set PIP_EXE=C:\%PYTHON%-x64\Scripts\pip
 )
