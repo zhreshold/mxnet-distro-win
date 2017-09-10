@@ -4,14 +4,14 @@ REM "openblas"
 call .\windows\make_openblas.cmd
 
 REM "opencv"
-call .\windows\make_opencv.cmd
+REM call .\windows\make_opencv.cmd
 
 git clone --recursive https://github.com/apache/incubator-mxnet mxnet-build
 pushd .\mxnet-build
 FOR /F "delims=" %%i IN ('git rev-parse HEAD') DO echo %%i > python/mxnet/COMMIT_HASH
 mkdir build && pushd build
-echo %OpenBLAS_HOME%
-echo %OpenCV_DIR%
+set OpenBLAS_HOME=C:\deps\openblas-install
+set OpenCV_DIR=C:\deps\opencv-install
 cmake .. ^
     -DUSE_PROFILER=1 ^
     -DUSE_CUDA=%USE_CUDA% ^
