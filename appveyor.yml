@@ -23,9 +23,9 @@ image: Visual Studio 2013
 environment:
   matrix:
     - mxnet_variant: CPU
-      TARGET_ARCH: 64
-    - mxnet_variant: CPU
       TARGET_ARCH: 32
+    - mxnet_variant: CPU
+      TARGET_ARCH: 64
 
     # - mxnet_variant: MKL
     # - mxnet_variant: CU75
@@ -34,6 +34,10 @@ environment:
     # - mxnet_variant: CU80MKL
   PYTHON: Python34
   DEPENDENCIES_DIR: C:\deps
+  PYPI_PASSWORD:
+    secure: J3xSUSPfV1/RNcIebPB4Ng==
+  PYPI_USERNAME:
+    secure: UTvLhzS/D3sriJaPEJD3FQ==
 
 matrix:
   fast_finish: true
@@ -87,4 +91,13 @@ test_script:
   - dir debug_wheel\mxnet
   - call %PIP_EXE% install -U --force-reinstall "dist\%wheel_name%"
   - call %PYTHON_EXE% sanity_test.py
-  - call %NOSE_EXE% -v mxnet-build\tests\python\unittest\test_gluon.py
+  # - call %NOSE_EXE% -v mxnet-build\tests\python\unittest\test_gluon.py
+  - call %NOSE_EXE% -v mxnet-build\tests\python\unittest\test_gluon_data.py
+  - call %NOSE_EXE% -v mxnet-build\tests\python\unittest\test_gluon_model_zoo.py
+
+artifacts:
+  - path: dist\*
+  - name: pypiartifacts
+
+deploy_script:
+  - ps: If ($env:APPVEYOR_REPO_TAG -eq "true" -And $env:APPVEYOR_REPO_BRANCH -eq "master") { Invoke-Expression "twine upload -u $env:PYPI_USERNAME -p $env:PYPI_PASSWORD --repository-url https://upload.pypi.org/legacy/ --skip-existing dist/*" } Else { write-output "Not on a tag on master, won't deploy to pypi"}

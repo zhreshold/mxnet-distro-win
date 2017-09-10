@@ -32,10 +32,12 @@ exec(compile(open(libinfo_py, "rb").read(), libinfo_py, 'exec'), libinfo, libinf
 
 LIB_PATH = libinfo['find_lib_path']()
 __version__ = libinfo['__version__']
-if 'TRAVIS_TAG' not in os.environ or not os.environ['TRAVIS_TAG'].strip():
-    __version__ += 'b{0}'.format(datetime.today().strftime('%Y%m%d'))
-elif 'TRAVIS_TAG' in os.environ and os.environ['TRAVIS_TAG'].startswith('patch-'):
+if 'TRAVIS_TAG' in os.environ and os.environ['TRAVIS_TAG'].startswith('patch-'):
     __version__ = os.environ['TRAVIS_TAG'][6:]
+elif 'APPVEYOR_REPO_TAG' in os.environ and os.environ['APPVEYOR_REPO_TAG'].startswith('patch-'):
+    __version__ = os.environ['APPVEYOR_REPO_TAG'][6:]
+else:
+    __version__ += 'b{0}'.format(datetime.today().strftime('%Y%m%d'))
 
 class BinaryDistribution(Distribution):
     def has_ext_modules(self):
