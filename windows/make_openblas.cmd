@@ -12,9 +12,9 @@ IF %TARGET_ARCH% == 64 (
 )
 
 REM we use pre-built version of openblas for now due to performance issue
-IF EXIST %OpenBLAS_HOME% {
+IF EXIST %OpenBLAS_HOME% (
   echo "Openblas exists, skip downloading..."
-}
+)
 IF NOT EXIST %OpenBLAS_HOME% (
   echo "Downloading openblas from %OPENBLAS_URL%"
   IF NOT EXIST "%OPENBLAS_FILE%" (
