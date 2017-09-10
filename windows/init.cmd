@@ -3,7 +3,7 @@ REM "Init environment"
 REM "32/64 bit visual studio"
 IF %TARGET_ARCH% == 32 (
   echo "Setting build target 32bit"
-  call "C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\vcvarsall.bat" x86
+  REM call "C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\vcvarsall.bat" x86
   set CMAKE_BUILD_PLATFORM="Visual Studio 14 2015"
   set PYTHON_DIR=C:\%PYTHON%
   set PYTHON_EXE=C:\%PYTHON%\python

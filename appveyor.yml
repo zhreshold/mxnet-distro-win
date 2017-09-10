@@ -46,6 +46,8 @@ matrix:
 init:
   - git config --global core.autocrlf input
   - mkdir %DEPENDENCIES_DIR%
+  - ps: If ($env:APPVEYOR_REPO_TAG -eq "true" ) { write-output "From a tag build" } Else { write-output "Not from a tag build"}
+  - ps: If ($env:APPVEYOR_SCHEDULED_BUILD -eq "True" ) { write-output "From a scheduled build" } Else { write-output "Not from a scheduled build"}
 
 cache:
   - C:\ProgramData\chocolatey\bin -> appveyor.yml
@@ -93,7 +95,7 @@ test_script:
   - call %PYTHON_EXE% sanity_test.py
   - call %NOSE_EXE% -v mxnet-build\tests\python\unittest\test_gluon.py
   - call %NOSE_EXE% -v mxnet-build\tests\python\unittest\test_gluon_data.py
-  - call %NOSE_EXE% -v mxnet-build\tests\python\unittest\test_gluon_model_zoo.py
+  # - call %NOSE_EXE% -v mxnet-build\tests\python\unittest\test_gluon_model_zoo.py
 
 artifacts:
   - path: dist\*
