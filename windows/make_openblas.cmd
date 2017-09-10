@@ -1,7 +1,7 @@
 @echo off
-SET OPENBLAS_VERSION=0.2.15
-SET OPENBLAS_FILE="%DEPENDENCIES_DIR%\openblas\openblas.zip"
-SET OpenBLAS_HOME="%DEPENDENCIES_DIR%\openblas-install"
+SET OPENBLAS_VERSION=0.2.14
+SET OPENBLAS_FILE=%DEPENDENCIES_DIR%\openblas\openblas.zip
+SET OpenBLAS_HOME=%DEPENDENCIES_DIR%\openblas-install
 IF %TARGET_ARCH% == 32 (
   echo "Fetching 32 bit mingw openblas"
   SET OPENBLAS_URL="http://mxnet-files.s3.amazonaws.com/openblas/openblas-%OPENBLAS_VERSION%-x86-install.zip"
@@ -24,4 +24,4 @@ IF NOT EXIST %OpenBLAS_HOME% (
   7z x %OPENBLAS_FILE% -y -o%OpenBLAS_HOME%
 )
 dir %OpenBLAS_HOME%
-dir "%DEPENDENCIES_DIR%\openblas-install\lib"
+dir %OpenBLAS_HOME%\lib

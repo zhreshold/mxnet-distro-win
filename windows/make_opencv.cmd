@@ -1,10 +1,10 @@
 @echo off
 SET OPENCV_VERSION=3.3.0
 SET OPENCV_URL="https://github.com/opencv/opencv/archive/%OPENCV_VERSION%.zip"
-SET OPENCV_FILE="%DEPENDENCIES_DIR%\opencv\opencv.zip"
-SET OPENCV_EXTRACT_DIR="%DEPENDENCIES_DIR%\opencv"
-SET OPENCV_SRC_DIR="%DEPENDENCIES_DIR%\opencv\opencv-%OPENCV_VERSION%"
-SET OpenCV_DIR="%DEPENDENCIES_DIR%\opencv-install"
+SET OPENCV_FILE=%DEPENDENCIES_DIR%\opencv\opencv.zip
+SET OPENCV_EXTRACT_DIR=%DEPENDENCIES_DIR%\opencv
+SET OPENCV_SRC_DIR=%DEPENDENCIES_DIR%\opencv\opencv-%OPENCV_VERSION%
+SET OpenCV_DIR=%DEPENDENCIES_DIR%\opencv-install
 
 IF EXIST %OpenCV_DIR% (
   echo "Opencv installed already, skip building from source..."
