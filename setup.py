@@ -34,8 +34,8 @@ LIB_PATH = libinfo['find_lib_path']()
 __version__ = libinfo['__version__']
 if 'TRAVIS_TAG' in os.environ and os.environ['TRAVIS_TAG'].startswith('patch-'):
     __version__ = os.environ['TRAVIS_TAG'][6:]
-elif 'APPVEYOR_REPO_TAG' in os.environ and os.environ['APPVEYOR_REPO_TAG'].startswith('patch-'):
-    __version__ = os.environ['APPVEYOR_REPO_TAG'][6:]
+elif 'APPVEYOR_REPO_TAG_NAME' in os.environ and os.environ['APPVEYOR_REPO_TAG_NAME'].startswith('patch-'):
+    __version__ = os.environ['APPVEYOR_REPO_TAG_NAME'][6:]
 else:
     __version__ += 'b{0}'.format(datetime.today().strftime('%Y%m%d'))
 

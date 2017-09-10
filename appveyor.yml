@@ -17,7 +17,7 @@ branches:
     - master
 
 # Build worker image (VM template)
-image: Visual Studio 2013
+image: Visual Studio 2015
 
 # environment variables
 environment:
@@ -91,7 +91,7 @@ test_script:
   - dir debug_wheel\mxnet
   - call %PIP_EXE% install -U --force-reinstall "dist\%wheel_name%"
   - call %PYTHON_EXE% sanity_test.py
-  # - call %NOSE_EXE% -v mxnet-build\tests\python\unittest\test_gluon.py
+  - call %NOSE_EXE% -v mxnet-build\tests\python\unittest\test_gluon.py
   - call %NOSE_EXE% -v mxnet-build\tests\python\unittest\test_gluon_data.py
   - call %NOSE_EXE% -v mxnet-build\tests\python\unittest\test_gluon_model_zoo.py
 
@@ -100,4 +100,4 @@ artifacts:
     name: pypiartifacts
 
 deploy_script:
-  - ps: If ($env:APPVEYOR_REPO_TAG -eq "true" -And $env:APPVEYOR_REPO_BRANCH -eq "master") { Invoke-Expression "twine upload -u $env:PYPI_USERNAME -p $env:PYPI_PASSWORD --repository-url https://upload.pypi.org/legacy/ --skip-existing dist/*" } Else { write-output "Not on a tag on master, won't deploy to pypi"}
+  - ps: If ($env:APPVEYOR_REPO_TAG -eq "true" -Or $env:APPVEYOR_SCHEDULED_BUILD -eq "True") { Invoke-Expression "twine upload -u $env:PYPI_USERNAME -p $env:PYPI_PASSWORD --repository-url https://upload.pypi.org/legacy/ --skip-existing dist/*" } Else { write-output "Not on a tag or scheduled, won't deploy to pypi"}
