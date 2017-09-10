@@ -4,7 +4,7 @@ REM "openblas"
 call .\windows\make_openblas.cmd
 
 REM "opencv"
-REM call .\windows\make_opencv.cmd
+call .\windows\make_opencv.cmd
 
 git clone --recursive https://github.com/apache/incubator-mxnet mxnet-build
 pushd .\mxnet-build
