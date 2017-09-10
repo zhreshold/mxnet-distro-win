@@ -13,9 +13,9 @@ if platform.system() == 'Linux':
 elif platform.system() == 'Windows':
     sys.argv.append('--universal')
     target_arch = os.environ['TARGET_ARCH']
-    if target_arch == 32:
+    if target_arch == '32':
         sys.argv.append('--plat-name=win32')
-    elif target_arch == 64:
+    elif target_arch == '64':
         sys.argv.append('--plat-name=win_amd64')
     else:
         raise ValueError("Invalid target_arch: " + str(target_arch))
@@ -98,8 +98,8 @@ if platform.system() == 'Windows':
     dll_dir = os.path.join(os.environ['OpenBLAS_HOME'], 'bin')
     openblas_dlls = glob.glob(os.path.abspath(os.path.join(dll_dir, '*.dll')))
     for dll in openblas_dlls:
-        shutil.copy(os.path.join(dll_dir, dll), os.path.join(CURRENT_DIR, 'mxnet'))
-        package_data['mxnet'].append('mxnet/' + dll)
+        shutil.copy(dll, os.path.join(CURRENT_DIR, 'mxnet'))
+        package_data['mxnet'].append('mxnet/' + os.path.basename(dll))
 if variant.endswith('MKL'):
 # uncomment below lines when we start using mkldnn
     # shutil.copy('../deps/lib/libmkldnn.so', os.path.join(CURRENT_DIR, 'mxnet'))
