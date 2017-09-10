@@ -7,5 +7,5 @@ pandoc --version
 REM pip install
 call %PIP_EXE% install pypandoc nose wheel
 call %PYTHON_EXE% -c "import pypandoc"
-SET NOSE_EXE=C:\%PYTHON%\Scripts\nosetests
+SET NOSE_EXE=%PYTHON_DIR%\Scripts\nosetests
 call %NOSE_EXE% --version
