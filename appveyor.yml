@@ -85,6 +85,6 @@ test_script:
   - 7z x "dist\%wheel_name%" -odebug_wheel
   - dir
   - dir debug_wheel\mxnet
-  - call %PIP_EXE% -U --force-reinstall "dist\%wheel_name%"
+  - call %PIP_EXE% install -U --force-reinstall "dist\%wheel_name%"
   - call %PYTHON_EXE% sanity_test.py
   - call %NOSE_EXE% -v mxnet-build\tests\python\unittest\test_gluon.py
