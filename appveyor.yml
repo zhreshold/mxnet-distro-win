@@ -32,7 +32,7 @@ environment:
     # - mxnet_variant: CU80
     # - mxnet_variant: CU75MKL
     # - mxnet_variant: CU80MKL
-  PYTHON: Python34
+  PYTHON: Python35
   DEPENDENCIES_DIR: C:\deps
   PYPI_PASSWORD:
     secure: J3xSUSPfV1/RNcIebPB4Ng==
@@ -102,4 +102,4 @@ artifacts:
     name: pypiartifacts
 
 deploy_script:
-  - ps: If ($env:APPVEYOR_REPO_TAG -eq "true" -Or $env:APPVEYOR_SCHEDULED_BUILD -eq "True") { Invoke-Expression "twine upload -u $env:PYPI_USERNAME -p $env:PYPI_PASSWORD --repository-url https://upload.pypi.org/legacy/ --skip-existing dist/*" } Else { write-output "Not on a tag or scheduled, won't deploy to pypi"}
+  - ps: If ($env:APPVEYOR_REPO_TAG -eq "true" -Or $env:APPVEYOR_SCHEDULED_BUILD -eq "True") { Invoke-Expression "$env:PYTHON_DIR\Scripts\twine upload -u $env:PYPI_USERNAME -p $env:PYPI_PASSWORD --repository-url https://upload.pypi.org/legacy/ --skip-existing dist/*" } Else { write-output "Not on a tag or scheduled, won't deploy to pypi"}
