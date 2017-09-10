@@ -24,3 +24,4 @@ IF NOT EXIST %OpenBLAS_HOME% (
   7z x %OPENBLAS_FILE% -y -o%OpenBLAS_HOME%
 )
 dir %OpenBLAS_HOME%
+dir "%DEPENDENCIES_DIR%\openblas-install\lib"
