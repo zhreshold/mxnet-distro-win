@@ -102,5 +102,5 @@ artifacts:
     name: pypiartifacts
 
 deploy_script:
-  - call %TWINE_EXE% upload -u %PYPI_USERNAME% -p %PYPI_PASSWORD% --repository https://upload.pypi.org/legacy/ --skip-existing dist/*
-  - ps: If ($env:APPVEYOR_REPO_TAG -eq "true" -Or $env:APPVEYOR_SCHEDULED_BUILD -eq "True") { Invoke-Expression "$env:TWINE_EXE upload -u $env:PYPI_USERNAME -p $env:PYPI_PASSWORD --repository https://upload.pypi.org/legacy/ --skip-existing dist/*" } Else { write-output "Not on a tag or scheduled, won't deploy to pypi"}
+  - call %TWINE_EXE% upload legacy --skip-existing dist/*
+  - ps: If ($env:APPVEYOR_REPO_TAG -eq "true" -Or $env:APPVEYOR_SCHEDULED_BUILD -eq "True") { Invoke-Expression "$env:TWINE_EXE upload legacy --skip-existing dist/*" } Else { write-output "Not on a tag or scheduled, won't deploy to pypi"}
