@@ -46,6 +46,7 @@ class BinaryDistribution(Distribution):
 
 DEPENDENCIES = [
     'numpy',
+    'requests',
     'graphviz',
 ]
 
