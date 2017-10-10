@@ -35,9 +35,9 @@ environment:
   PYTHON: Python35
   DEPENDENCIES_DIR: C:\deps
   PYPI_PASSWORD:
-    secure: J3xSUSPfV1/RNcIebPB4Ng==
+    secure: I2X8n7lRmasNOSfkam/LctMp5yw2X3UYmsA46RD6ikI=
   PYPI_USERNAME:
-    secure: UTvLhzS/D3sriJaPEJD3FQ==
+    secure: aOj5+o65rCsGgeSwL7nHjg==
 
 matrix:
   fast_finish: true
