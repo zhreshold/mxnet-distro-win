@@ -1,11 +1,5 @@
 REM "Prepare build prerequisites"
 
-REM "openblas"
-call .\windows\make_openblas.cmd
-
-REM "opencv"
-call .\windows\make_opencv.cmd
-
 REM If a build is from a tag, use this tag to fetch the corresponding release
 IF %APPVEYOR_REPO_TAG% == "true" (
   echo "APPVEYOR_REPO_TAG_NAME" %APPVEYOR_REPO_TAG_NAME%
@@ -13,8 +7,13 @@ IF %APPVEYOR_REPO_TAG% == "true" (
   echo "GIT_ADDITIONAL_FLAGS" %GIT_ADDITIONAL_FLAGS%
   ) ELSE (
   echo "From normal nightly build."
-  SET GIT_ADDITIONAL_FLAGS=""
   )
+
+REM "openblas"
+call .\windows\make_openblas.cmd
+
+REM "opencv"
+call .\windows\make_opencv.cmd
 
 git clone --recursive https://github.com/apache/incubator-mxnet mxnet-build %GIT_ADDITIONAL_FLAGS%
 pushd .\mxnet-build
