@@ -3,7 +3,8 @@ REM "Prepare build prerequisites"
 REM If a build is from a tag, use this tag to fetch the corresponding release
 IF "%APPVEYOR_REPO_TAG%" == "true" (
   echo "APPVEYOR_REPO_TAG_NAME" %APPVEYOR_REPO_TAG_NAME%
-  SET GIT_ADDITIONAL_FLAGS="-b %APPVEYOR_REPO_TAG_NAME:patch-= %"
+  SET GIT_FETCH_VERSION=%APPVEYOR_REPO_TAG_NAME:patch-= %
+  SET GIT_ADDITIONAL_FLAGS="-b %GIT_FETCH_VERSION%"
   echo "GIT_ADDITIONAL_FLAGS" %GIT_ADDITIONAL_FLAGS%
   ) ELSE (
   echo "From normal nightly build."
