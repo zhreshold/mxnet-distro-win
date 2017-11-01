@@ -6,7 +6,17 @@ call .\windows\make_openblas.cmd
 REM "opencv"
 call .\windows\make_opencv.cmd
 
-git clone --recursive https://github.com/apache/incubator-mxnet mxnet-build
+REM If a build is from a tag, use this tag to fetch the corresponding release
+IF %APPVEYOR_REPO_TAG% == "true" (
+  echo "APPVEYOR_REPO_TAG_NAME" %APPVEYOR_REPO_TAG_NAME%
+  SET GIT_ADDITIONAL_FLAGS="-b %APPVEYOR_REPO_TAG_NAME:patch-= %"
+  echo "GIT_ADDITIONAL_FLAGS" %GIT_ADDITIONAL_FLAGS%
+  ) ELSE (
+  echo "From normal nightly build."
+  SET GIT_ADDITIONAL_FLAGS=""
+  )
+
+git clone --recursive https://github.com/apache/incubator-mxnet mxnet-build %GIT_ADDITIONAL_FLAGS%
 pushd .\mxnet-build
 FOR /F "delims=" %%i IN ('git rev-parse HEAD') DO echo %%i > python/mxnet/COMMIT_HASH
 mkdir build && pushd build
