@@ -1,6 +1,7 @@
 REM "Prepare build prerequisites"
 
 REM If a build is from a tag, use this tag to fetch the corresponding release
+echo "%APPVEYOR_REPO_TAG%" %APPVEYOR_REPO_TAG%
 IF %APPVEYOR_REPO_TAG% == "true" (
   echo "APPVEYOR_REPO_TAG_NAME" %APPVEYOR_REPO_TAG_NAME%
   SET GIT_ADDITIONAL_FLAGS="-b %APPVEYOR_REPO_TAG_NAME:patch-= %"
