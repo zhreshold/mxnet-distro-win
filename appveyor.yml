@@ -94,7 +94,7 @@ test_script:
   - call %PIP_EXE% install -U --force-reinstall "dist\%wheel_name%"
   - call %PYTHON_EXE% sanity_test.py
   - call %NOSE_EXE% -v mxnet-build\tests\python\unittest\test_gluon.py
-  - call %NOSE_EXE% -v mxnet-build\tests\python\unittest\test_gluon_data.py
+  # - call %NOSE_EXE% -v mxnet-build\tests\python\unittest\test_gluon_data.py
   # - call %NOSE_EXE% -v mxnet-build\tests\python\unittest\test_gluon_model_zoo.py
 
 artifacts:
