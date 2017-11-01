@@ -36,6 +36,8 @@ if 'TRAVIS_TAG' in os.environ and os.environ['TRAVIS_TAG'].startswith('patch-'):
     __version__ = os.environ['TRAVIS_TAG'][6:]
 elif 'APPVEYOR_REPO_TAG_NAME' in os.environ and os.environ['APPVEYOR_REPO_TAG_NAME'].startswith('patch-'):
     __version__ = os.environ['APPVEYOR_REPO_TAG_NAME'][6:]
+elif 'TRAVIS_TAG' in os.environ or 'APPVEYOR_REPO_TAG_NAME' in os.environ:
+    pass
 else:
     __version__ += 'b{0}'.format(datetime.today().strftime('%Y%m%d'))
 
