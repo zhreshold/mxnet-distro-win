@@ -14,7 +14,6 @@ echo %OpenBLAS_HOME%
 echo %OpenCV_DIR%
 cmake .. ^
     -DUSE_PROFILER=1 ^
-    -DUSE_SIGNAL_HANDLER = 1 ^
     -DUSE_CUDA=%USE_CUDA% ^
     -DUSE_CUDNN=%USE_CUDNN% ^
     -DUSE_NVRTC=0 ^
