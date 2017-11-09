@@ -5,7 +5,7 @@ choco install -y pandoc
 pandoc --version
 
 REM pip install
-call %PIP_EXE% install pypandoc nose wheel twine
+call %PIP_EXE% install pypandoc nose wheel twine numpy
 call %PYTHON_EXE% -c "import pypandoc"
 SET NOSE_EXE=%PYTHON_DIR%\Scripts\nosetests
 SET TWINE_EXE=%PYTHON_DIR%\Scripts\twine

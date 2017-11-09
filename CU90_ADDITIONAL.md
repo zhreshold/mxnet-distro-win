@@ -1,6 +1,6 @@
 Prerequisites
 ------------
-This package supports Linux platform only, and requires CUDA-7.5 for GPU acceleration. Also checkout other versions: [mxnet-cu90](https://pypi.python.org/pypi/mxnet-cu90/), [mxnet-cu90mkl](https://pypi.python.org/pypi/mxnet-cu90mkl/), [mxnet-cu75mkl](https://pypi.python.org/pypi/mxnet-cu75mkl/), [mxnet-cu80](https://pypi.python.org/pypi/mxnet-cu80/), and [mxnet-cu80mkl](https://pypi.python.org/pypi/mxnet-cu80mkl/).
+This package supports Linux platform only, and requires CUDA-9.0 for GPU acceleration. Also checkout other versions: [mxnet-cu90mkl](https://pypi.python.org/pypi/mxnet-cu90mkl/), [mxnet-cu75mkl](https://pypi.python.org/pypi/mxnet-cu75mkl/), and [mxnet-cu75](https://pypi.python.org/pypi/mxnet-cu75/), [mxnet-cu75mkl](https://pypi.python.org/pypi/mxnet-cu75mkl/), and [mxnet-cu75](https://pypi.python.org/pypi/mxnet-cu75/).
 
 To download, check [CUDA download](https://developer.nvidia.com/cuda-downloads). For more instructions, check [CUDA Toolkit online documentation](http://docs.nvidia.com/cuda/index.html).
 
@@ -10,5 +10,5 @@ Installation
 ------------
 To install:
 ```bash
-pip install mxnet-cu75
+pip install mxnet-cu90
 ```
