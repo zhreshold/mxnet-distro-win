@@ -33,9 +33,9 @@ exec(compile(open(libinfo_py, "rb").read(), libinfo_py, 'exec'), libinfo, libinf
 LIB_PATH = libinfo['find_lib_path']()
 __version__ = libinfo['__version__']
 if 'TRAVIS_TAG' in os.environ and os.environ['TRAVIS_TAG'].startswith('patch-'):
-    __version__ = os.environ['TRAVIS_TAG'][6:]
+    __version__ = os.environ['TRAVIS_TAG'].split('-')[1]
 elif 'APPVEYOR_REPO_TAG_NAME' in os.environ and os.environ['APPVEYOR_REPO_TAG_NAME'].startswith('patch-'):
-    __version__ = os.environ['APPVEYOR_REPO_TAG_NAME'][6:]
+    __version__ = os.environ['APPVEYOR_REPO_TAG_NAME'].split('-')[1]
 elif 'TRAVIS_TAG' in os.environ or 'APPVEYOR_REPO_TAG_NAME' in os.environ:
     pass
 else:
