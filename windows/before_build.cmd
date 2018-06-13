@@ -21,6 +21,7 @@ cmake .. ^
     -DUSE_OPENMP=1 ^
     -DUSE_BLAS=open ^
     -DUSE_LAPACK=1 ^
+    -DUSE_MKLDNN=0 ^
     -DUSE_DIST_KVSTORE=0 ^
     -DCMAKE_BUILD_TYPE=Release ^
     -G %CMAKE_BUILD_PLATFORM%
