@@ -23,9 +23,9 @@ image: Visual Studio 2015
 environment:
   matrix:
     - mxnet_variant: CPU
-      TARGET_ARCH: 32
-    - mxnet_variant: CPU
       TARGET_ARCH: 64
+    - mxnet_variant: CPU
+      TARGET_ARCH: 32
 
     # - mxnet_variant: MKL
     # - mxnet_variant: CU75
